@@ -1,4 +1,5 @@
-class ChatApp extends React.Component{
+
+class App extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -23,10 +24,10 @@ class ChatApp extends React.Component{
 
     render(){
         return (
-            <div>
+            <div className="chat-app">
             <h1>React Chat</h1>
-            <UserInput socket={this.state.socket}/>
                 <List messages = {this.state.messages}/>
+            <UserInput socket={this.state.socket}/>
             </div>
         )
     }
@@ -48,6 +49,7 @@ class UserInput extends React.Component{
 
     sendMessage(event){
         event.preventDefault();
+        if(event.target.value === "") return;
         let message = this.state.message;
         this.props.socket.emit("new-message",message);
         this.setState({
@@ -56,7 +58,7 @@ class UserInput extends React.Component{
     }
 
     render(){
-        return( <form className="user-input" onSubmit={this.sendMessage.bind(this)}>
+        return( <form className="message-form" onSubmit={this.sendMessage.bind(this)}>
                 <input type="text"
                        className="text-box"
                        value={this.state.message}
@@ -71,20 +73,22 @@ class UserInput extends React.Component{
     }
 }
 
+const Message = (props) =>{
+    if(props.id % 2 === 0){
+        return (<li style={{backgroundColor:"#CAEADB"}}>{props.children}</li>)
+    }else{
+        return (<li style={{backgroundColor:"#E3E3E5"}}>{props.children}</li>)
+    }
 
+}
 
 const List = (props) =>{
-    let messageList = props.messages.map((message)=>{
-        return <Message>{message}</Message>
+    let messageList = props.messages.map((message,index)=>{
+        return <Message key={index} id={index}>{message}</Message>
     });
-    return (<ul>{messageList}</ul>)
-}
-
-const Message = (props) =>{
-    return (
-        <li>{props.children}</li>
-    )
+    return (<div className="messages"><ul>{messageList}</ul></div>)
 }
 
 
-ReactDOM.render(<ChatApp/>,document.getElementById("chat"));
+
+ReactDOM.render(<App/>,document.getElementById("chat"));

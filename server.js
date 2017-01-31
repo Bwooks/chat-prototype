@@ -8,7 +8,6 @@ let io = require('socket.io')(http);
 
 io.on('connection',function(socket){
     socket.on("new-message",function(message){
-
         io.emit("broadcast",message);
     });
 

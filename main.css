@@ -1,0 +1,39 @@
+body{
+    margin: 0px;
+    padding:0px;
+    height:100vh;
+    background-color:green;
+}
+#chat{
+    height:100%;
+}
+.chat-app{
+    width:100%;
+    height:100%;
+}
+.message-form{
+    position:fixed;
+    bottom:0px;
+    width:100%;
+}
+.message-form input[type="text"]{
+    width:93%;
+    display:inline-block;
+}
+.message-form input[type="submit"]{
+    width:6%;
+    display:inline-block;
+}
+.messages{
+    height:100%;
+}
+.messages ul{
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+.messages li{
+    list-style-type:none;
+    height:30px;
+    line-height:30px;
+}
