@@ -2,7 +2,7 @@ body{
     margin: 0px;
     padding:0px;
     height:100vh;
-    background-color:green;
+    background-image:url("assets/chat_background.jpg");
 }
 #chat{
     height:100%;
@@ -19,10 +19,12 @@ body{
 .message-form input[type="text"]{
     width:93%;
     display:inline-block;
+    height:22px;
 }
 .message-form input[type="submit"]{
     width:6%;
     display:inline-block;
+    height:28px;
 }
 .messages{
     height:100%;
@@ -34,6 +36,10 @@ body{
 }
 .messages li{
     list-style-type:none;
-    height:30px;
-    line-height:30px;
+    height:40px;
+    line-height:40px;
+    border-radius:5px;
+    padding:0.2%;
+    display:inline-block;
+    margin-right:50%;
 }

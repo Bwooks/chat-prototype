@@ -75,9 +75,9 @@ class UserInput extends React.Component{
 
 const Message = (props) =>{
     if(props.id % 2 === 0){
-        return (<li style={{backgroundColor:"#CAEADB"}}>{props.children}</li>)
+        return (<li style={{backgroundColor:"#CAEADB",marginLeft:"40px"}}>{props.children}</li>)
     }else{
-        return (<li style={{backgroundColor:"#E3E3E5"}}>{props.children}</li>)
+        return (<li style={{backgroundColor:"#E3E3E5",marginLeft:"80px"}}>{props.children}</li>)
     }
 
 }
