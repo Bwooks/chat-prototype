@@ -4,8 +4,7 @@ class App extends React.Component{
         super(props);
         this.state = {
             messages:[],
-            socket:window.io("http://localhost:8000"),
-            userid:new Date().getTime()
+            socket:window.io("http://localhost:8000")
         };
     }
 
@@ -26,8 +25,8 @@ class App extends React.Component{
     render(){
         return (
             <div className="chat-app">
-                <List messages = {this.state.messages} userid={this.state.userid}/>
-            <UserInput socket={this.state.socket}/>
+                <List messages = {this.state.messages}/>
+                <UserInput socket={this.state.socket}/>
             </div>
         )
     }
@@ -49,8 +48,12 @@ class UserInput extends React.Component{
 
     sendMessage(event){
         event.preventDefault();
+        const username = this.refs.username.value;
         if(event.target.value === "") return;
-        let message = this.state.message;
+        const message = {
+            body:this.state.message,
+            username:username || "guest"
+        }
         this.props.socket.emit("new-message",message);
         this.setState({
             message:""
@@ -59,10 +62,13 @@ class UserInput extends React.Component{
 
     render(){
         return( <form className="message-form" onSubmit={this.sendMessage.bind(this)}>
+                <input ref="username" type="text" className="username" placeholder="Please enter a username"/>
                 <input type="text"
                        className="text-box"
                        value={this.state.message}
-                       onChange={this.update.bind(this)}/>
+                       onChange={this.update.bind(this)}
+                       placeholder="Message..."
+                />
 
                 <input type="submit"
                        value = "Send"
@@ -74,7 +80,6 @@ class UserInput extends React.Component{
 }
 
 const Message = (props) =>{
-    console.log(props.userid)
     if(props.id % 2 === 0){
         return (<li style={{backgroundColor:"#CAEADB",marginLeft:"40px"}}>{props.children}</li>)
     }else{
@@ -85,7 +90,7 @@ const Message = (props) =>{
 
 const List = (props) =>{
     let messageList = props.messages.map((message,index)=>{
-        return <Message key={index} id={index} userid={props.userid}>{message}</Message>
+        return <Message key={index} id={index}>{message.username}{" " + message.body}</Message>
     });
     return (<div className="messages"><ul>{messageList}</ul></div>)
 }
