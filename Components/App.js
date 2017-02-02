@@ -4,7 +4,8 @@ class App extends React.Component{
         super(props);
         this.state = {
             messages:[],
-            socket:window.io("http://localhost:8000")
+            socket:window.io("http://localhost:8000"),
+            userid:new Date().getTime()
         };
     }
 
@@ -25,8 +26,7 @@ class App extends React.Component{
     render(){
         return (
             <div className="chat-app">
-            <h1>React Chat</h1>
-                <List messages = {this.state.messages}/>
+                <List messages = {this.state.messages} userid={this.state.userid}/>
             <UserInput socket={this.state.socket}/>
             </div>
         )
@@ -74,6 +74,7 @@ class UserInput extends React.Component{
 }
 
 const Message = (props) =>{
+    console.log(props.userid)
     if(props.id % 2 === 0){
         return (<li style={{backgroundColor:"#CAEADB",marginLeft:"40px"}}>{props.children}</li>)
     }else{
@@ -84,7 +85,7 @@ const Message = (props) =>{
 
 const List = (props) =>{
     let messageList = props.messages.map((message,index)=>{
-        return <Message key={index} id={index}>{message}</Message>
+        return <Message key={index} id={index} userid={props.userid}>{message}</Message>
     });
     return (<div className="messages"><ul>{messageList}</ul></div>)
 }
