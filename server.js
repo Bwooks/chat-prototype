@@ -10,6 +10,9 @@ io.on('connection',function(socket){
     socket.on("new-message",function(message){
         io.emit("broadcast",message);
     });
+    socket.on("new-user",function(user){
+        io.emit("new-user",user);
+    })
 
 });
 
