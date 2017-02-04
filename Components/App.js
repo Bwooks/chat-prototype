@@ -16,6 +16,12 @@ class App extends React.Component{
         }.bind(this));
     }
 
+
+    componentDidUpdate(){
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+
     addMessage(message){
         let newMessages = this.state.messages.slice();
         newMessages.push(message);
@@ -96,28 +102,34 @@ class UserInput extends React.Component{
 
     render(){
         return(
-            <form className="message-form" onSubmit={this.sendMessage.bind(this)}>
-                <div className={"username-form-container " + this.state.prompt}>
-                    <input ref="username" type="text" className="username"
-                           placeholder="Please enter a username"/>
-                    <input type="submit"
-                           value = "Submit"
-                           className={"submit-button " + this.state.prompt}
-                    />
-                </div>
-                <div className="message-form-container">
-                <input type="text"
-                       className="text-box"
-                       value={this.state.message}
-                       onChange={this.update.bind(this)}
-                       ref="message"
-                       placeholder={this.state.username ? `Say something, ${this.state.username}` : ""}
-                />
+            <form className="chat-form" onSubmit={this.sendMessage.bind(this)}>
+                <div className="form-wrapper">
+                    <div className={"username-form-container " + this.state.prompt}>
+                        <div className="username-form">
+                        <input ref="username" type="text" className="username"
+                               placeholder="Please enter a username"/>
+                        <input type="submit"
+                               value = "Submit"
+                               className={"submit-button username-submit " + this.state.prompt}
+                        />
+                        </div>
+                    </div>
+                    <div className="message-form-container">
+                        <div className="message-form">
+                        <input type="text"
+                               className="message"
+                               value={this.state.message}
+                               onChange={this.update.bind(this)}
+                               ref="message"
+                               placeholder={this.state.username ? `Say something, ${this.state.username}` : ""}
+                        />
 
-                <input type="submit"
-                       value = "Send"
-                       className="submit-button"
-                />
+                        <input type="submit"
+                               value = "Send"
+                               className="submit-button message-submit"
+                        />
+                        </div>
+                    </div>
                 </div>
             </form>
         )
@@ -149,21 +161,23 @@ class Message extends React.Component{
         })
     }
 
+
     render(){
         return (
             <li>
                 <p className="user-display">{this.state.username + " "} <span className="time-stamp">{`At ${this.state.time}`}</span></p>
                 <p className="message-display">{this.props.children}</p>
-            </li>)
+            </li>
+        )
     }
 
 };
 
-const List = (props) =>{
-    let messageList = props.messages.map((message,index)=>{
-        return <Message key={index} id={index} username={message.username}>{message.body}</Message>
-    });
-    return (<div className="messages"><ul>{messageList}</ul></div>)
+const List = (props)=>{
+        let messageList = props.messages.map((message,index)=>{
+            return <Message key={index} id={index} username={message.username}>{message.body}</Message>
+        });
+        return (<div className="messages"><ul>{messageList}</ul></div>)
 };
 
 
