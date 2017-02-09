@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "portfolio-website",
   "version": "1.0.0",
   "description": "Brooks Dulla's personal porftolio.",
@@ -60,5 +61,17 @@
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
     "whatwg-fetch": "^2.0.1"
+=======
+  "name": "react-chat",
+  "version": "0.0.1",
+  "dependencies": {
+    "socket.io": "^1.7.2"
+  },
+  "devDependencies": {
+    "express": "^4.14.0",
+    "http": "0.0.0",
+    "node": "0.0.0",
+    "socket.io": "^1.7.2"
+>>>>>>> 6633539a405863504103928bcd4f84e633146bbb
   }
 }
