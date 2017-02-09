@@ -5,7 +5,11 @@ class App extends React.Component{
         this.state = {
             messages:[],
             users:[],
-            socket:window.io(window.location.hostname)
+<<<<<<< HEAD
+            socket:window.io("http://localhost:8000")
+=======
+            socket:window.io("http://localhost:8000")
+>>>>>>> 4be4dfafe168e95ae43f4218aa83d31a8180d339
         };
     }
 
