@@ -2,14 +2,11 @@
 class App extends React.Component{
     constructor(props){
         super(props);
+        const server = `${window.location.protocol}//${window.location.hostname}:8000`;
         this.state = {
             messages:[],
             users:[],
-<<<<<<< HEAD
-            socket:window.io("http://localhost:8000")
-=======
-            socket:window.io("http://localhost:8000")
->>>>>>> 4be4dfafe168e95ae43f4218aa83d31a8180d339
+            socket:window.io(server)
         };
     }
 
