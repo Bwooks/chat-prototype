@@ -5,7 +5,7 @@ class App extends React.Component{
         this.state = {
             messages:[],
             users:[],
-            socket:window.io(window.location.hostname);
+            socket:window.io(window.location.hostname)
         };
     }
 
