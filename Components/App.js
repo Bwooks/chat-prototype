@@ -2,7 +2,8 @@
 class App extends React.Component{
     constructor(props){
         super(props);
-        const server = `${window.location.protocol}//${window.location.hostname}:8000`;
+        const server = `${window.location.protocol}//${window.location.hostname}:31415`;
+        console.log(server)
         this.state = {
             messages:[],
             users:[],
