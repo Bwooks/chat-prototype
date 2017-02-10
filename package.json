@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "start": "node ./js/server.js",
+    "postinstall": "webpack"
+  },
+  "name": "react-chat",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.14.1",
+    "http": "0.0.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "socket.io": "^1.7.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.10.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^2.3.0"
+  }
+}

@@ -1,54 +1,36 @@
-
-var app_root = 'src';
-var path = require('path');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+/**
+ * Created by Owner on 2/9/2017.
+ */
+const path = require('path');
 
 module.exports = {
-  app_root: app_root, // the app root folder, needed by the other webpack configs
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    'babel-polyfill',
-    __dirname + '/' + app_root + '/index.js',
-  ],
-  output: {
-    path: __dirname + '/public/js',
-    publicPath: 'js/',
-    filename: 'bundle.js',
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
-        exclude: /node_modules/,
-      },
-      {
-        // https://github.com/jtangelder/sass-loader
-        test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
-      },
-      {
-        test: /\.css$/,
-        loaders: ['style', 'css'],
-      },
-
-      {
-          test: /\.(jpg|png|svg)$/,
-          loader: 'file',
-          include: './public/assets/'
-      }
-
-    ],
-  },
-  devServer: {
-    contentBase: __dirname + '/public',
-  },
-  plugins: [
-    new CleanWebpackPlugin(['css/main.css', 'js/bundle.js'], {
-      root: __dirname + '/public',
-      verbose: true,
-      dry: false, // true for simulation
-    }),
-  ],
-};
+    context:__dirname,
+    entry:{
+        javascript:"./js/index.js",
+        html:"./index.html"
+    },
+    output:{
+        filename:"project.js",
+        path:__dirname + "/dist"
+    },
+    resolve:{
+        extensions:['','.js','.json','.jsx']
+    },
+    module:{
+        loaders:[
+            {
+                test:/\.jsx?$/,
+                exclude:/node_modules/,
+                loaders:['babel-loader']
+            },
+            {
+                test:/\.html$/,
+                loader:'file-loader?name=[name].[ext]'
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"
+            }
+        ]
+    }
+}
