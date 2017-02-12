@@ -11,7 +11,7 @@ export default class App extends React.Component{
         this.state = {
             messages:[],
             users:[],
-            socket:window.io(server)
+            socket:window.io()
         };
     }
 
